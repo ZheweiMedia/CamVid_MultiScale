@@ -14,7 +14,7 @@ import numpy as np
 import copy
 from matplotlib import pyplot as plt
 
-
+"""
 def histogram_equalize(img):
     b, g, r = cv2.split(img)
     red = cv2.equalizeHist(r)
@@ -48,12 +48,12 @@ for files in glob.glob('*.png'):
     #print Quarter_size.shape
     cv2.imwrite('/home/zhewei/Zhewei/CamVid/val_EB/'+files, img)
 
-
-
-
 """
+
+
+
 # for ground truth, the label is from 0 to 11, But it has 10 classes for total
-os.chdir('/home/zhewei/Zhewei/CamVid/testannot/')
+os.chdir('/home/zhewei/Zhewei/CamVid_MultiScale/valannot/')
 for files in glob.glob('*.png'):
     img = cv2.imread(files, cv2.IMREAD_GRAYSCALE)
     #tmp = copy.deepcopy(img)
@@ -94,12 +94,12 @@ for files in glob.glob('*.png'):
         for j_s in range(stack_img.shape[2]):
             tmp_array = stack_img[:,i_s,j_s]
             max_index = np.argmax(tmp_array)
-            final_img[i_s, j_s] = max_index
+            final_img[i_s, j_s] = class_list[max_index]
             #print tmp_array
-    cv2.imwrite('/home/zhewei/Zhewei/CamVid/testannot_small/'+files, final_img)
+            
+    cv2.imwrite('/home/zhewei/Zhewei/CamVid_MultiScale/valannot_small/'+files, final_img)
     #cv2.imwrite('final.png', final_img)
     print files
-"""
 
 
 
